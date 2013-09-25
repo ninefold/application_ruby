@@ -31,6 +31,7 @@ attribute :bundle_command, :kind_of => [String, NilClass], :default => "bundle"
 attribute :bundle_cmd_suffix, :kind_of => [String, NilClass], :default => nil
 attribute :precompile_assets, :kind_of => [NilClass, TrueClass, FalseClass], :default => nil
 attribute :use_omnibus_ruby, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :symlink_logs, :kind_of => [TrueClass, FalseClass], :default => false
 
 def database(*args, &block)
   @database ||= Mash.new
