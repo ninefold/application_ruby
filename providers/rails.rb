@@ -92,8 +92,10 @@ action :before_migrate do
       bundler_deployment = ::File.exists?(::File.join(new_resource.release_path, "Gemfile.lock"))
     end
     command = "#{bundle_command} install --path=vendor/bundle --without #{common_groups}"
-    command = "#{command} --deployment" if bundler_deployment
-    command = "#{command} #{bundle_cmd_suffix}" if bundle_cmd_suffix
+    command += " --deployment" if bundler_deployment
+    command += " #{bundle_options}" if bundle_options
+    command += " #{bundle_cmd_suffix}" if bundle_cmd_suffix
+
     execute command do
       cwd new_resource.release_path
       user new_resource.owner
