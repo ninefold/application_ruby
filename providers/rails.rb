@@ -86,7 +86,6 @@ action :before_migrate do
     common_groups += new_resource.bundler_without_groups
     common_groups -= [new_resource.environment_name]
     common_groups = common_groups.join(' ')
-    bundler_deployment = new_resource.bundler_deployment
     if bundler_deployment.nil?
       # Check for a Gemfile.lock
       bundler_deployment = ::File.exists?(::File.join(new_resource.release_path, "Gemfile.lock"))
@@ -162,6 +161,18 @@ protected
 
 def bundle_command
   new_resource.bundle_command
+end
+
+def bundle_cmd_suffix
+  new_resource.bundle_cmd_suffix
+end
+
+def bundler_deployment
+  new_resource.bundler_deployment
+end
+
+def bundle_options
+  new_resource.bundler_options
 end
 
 def bundle_cmd_suffix
