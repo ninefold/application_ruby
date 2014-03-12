@@ -43,7 +43,7 @@ action :before_compile do
 
   new_resource.symlink_before_migrate.update({
     "database.yml" => "config/database.yml"
-  })
+  }) if manage_database
 
 
   if new_resource.symlink_logs
@@ -59,7 +59,7 @@ action :before_deploy do
 
   install_gems
 
-  create_database_yml
+  create_database_yml if manage_database
 
 end
 
@@ -96,7 +96,7 @@ action :before_migrate do
       user new_resource.owner
       environment new_resource.environment
     end
-  else
+  elsif manage_database
     # chef runs before_migrate, then symlink_before_migrate symlinks, then migrations,
     # yet our before_migrate needs database.yml to exist (and must complete before
     # migrations).
@@ -173,6 +173,10 @@ def install_gems
       version ver if ver && ver.length > 0
     end
   end
+end
+
+def manage_database
+  new_resource.manage_database == true
 end
 
 def create_database_yml
