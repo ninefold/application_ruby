@@ -2,6 +2,10 @@ application_ruby Cookbook CHANGELOG
 ===================================
 This file is used to list changes made in each version of the application_rubycookbook.
 
+v2.1.6
+------
+### Local Ninefold Fix
+- **[OCT-4399]** - Fix node search in memcached provider
 
 v2.1.4
 ------
