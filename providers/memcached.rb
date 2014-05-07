@@ -25,8 +25,9 @@ end
 
 action :before_deploy do
 
-  results = search(:node, "role:#{new_resource.role} AND chef_environment:#{node.chef_environment} NOT hostname:#{node['hostname']}")
+  results = search(:node, "role:#{new_resource.role} AND chef_environment:#{node.chef_environment}")
   if results.length == 0
+    # check if this node is one in case of chef indexing delay
     if node['roles'].include?(new_resource.role)
       results << node
     end
