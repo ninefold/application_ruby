@@ -7,6 +7,24 @@ v2.1.6
 ### Local Ninefold Fix
 - **[OCT-4399]** - Fix node search in memcached provider
 
+v3.0.2
+------
+No changes, bumping version to get bits in various places in sync.
+
+
+v3.0.0
+------
+Major version bump. Breaking backwards compatibility with Chef10.x
+
+
+v2.2.0
+------
+### Bug
+- **[COOK-3895](https://tickets.opscode.com/browse/COOK-3895)** - application_ruby use_omnibus_ruby attr needs to default to false
+- **[COOK-3894](https://tickets.opscode.com/browse/COOK-3894)** - application_ruby cookbook needs version bump to pick up application v4.0 cookbook
+- **[COOK-2079](https://tickets.opscode.com/browse/COOK-2079)** - Attempting to touch restart.txt should not cause a chef-client run to fail.
+
+
 v2.1.4
 ------
 ### Bug

@@ -15,7 +15,7 @@ Other application stacks may be supported at a later date.
 Requirements
 ============
 
-Chef 0.10.0 or higher required (for Chef environment use).
+Chef 11.0.0 or higher required (for Chef environment use).
 
 The following Opscode cookbooks are dependencies:
 
@@ -55,8 +55,10 @@ Bundler will be run with:
 
 - gems: an Array of gems to install
 - bundler: if true, `bundler` will always be used; if false it will never be. Defaults to true if `gems` includes bundler
-- bundle_command: The command to execute when calling bundler commands.  Useful for specifing alternate commands such as RVM wrappers.  Defaults to `bundle`.
-- bundler_deployment: if true, Bundler will be run with the `--deployment` options. Defaults to true if a `Gemfile.lock` is present
+- bundle\_command: The command to execute when calling bundler commands.  Useful for specifing alternate commands such as RVM wrappers.  Defaults to `bundle`.
+- bundle\_options: additional options which will be appended to the end of the `bundle` command string. Useful for capturing the output to a file using the tee command
+e.g. `bundle_options "2>&1 | tee -a \some\log\file.log"` 
+- bundler\_deployment: if true, Bundler will be run with the `--deployment` options. Defaults to true if a `Gemfile.lock` is present
 - bundler\_without\_groups: an Array of additional Bundler groups to skip
 - database\_master\_role: if a role name is provided, a Chef search will be run to find a node with the role in the same environment as the current role. If a node is found, its IP address will be used when rendering the `database.yml` file, but see the "Database block parameters" section below
 - database\_template: the name of the template that will be rendered to create the `database.yml` file; if specified it will be looked up in the application cookbook. Defaults to "database.yml.erb" from this cookbook
@@ -102,6 +104,7 @@ The `unicorn` sub-resource LWRP configures Unicorn to run the application.
 - unicorn_command_line: passed to the `unicorn_config` LWRP
 - copy_on_write: passed to the `unicorn_config` LWRP
 - enable_stats: passed to the `unicorn_config` LWRP
+- runit_template_cookbook: specify which cookbook to look for unicorn runit templates in
 
 memcached
 ---------
