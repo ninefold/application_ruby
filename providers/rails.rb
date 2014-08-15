@@ -96,13 +96,14 @@ action :before_migrate do
       user new_resource.owner
       environment new_resource.environment
     end
-  elsif manage_database
+  elsif (manage_database && manage_gems)
     # chef runs before_migrate, then symlink_before_migrate symlinks, then migrations,
     # yet our before_migrate needs database.yml to exist (and must complete before
     # migrations).
     #
     # maybe worth doing run_symlinks_before_migrate before before_migrate callbacks,
     # or an add'l callback.
+
     execute "(ln -s ../../../shared/database.yml config/database.yml && rake gems:install); rm config/database.yml" do
       cwd new_resource.release_path
       user new_resource.owner
@@ -173,6 +174,10 @@ def install_gems
       version ver if ver && ver.length > 0
     end
   end
+end
+
+def manage_gems
+  new_resource.manage_gems == true
 end
 
 def manage_database
