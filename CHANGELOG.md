@@ -2,6 +2,11 @@ application_ruby Cookbook CHANGELOG
 ===================================
 This file is used to list changes made in each version of the application_rubycookbook.
 
+v2.1.7
+------
+### Local Ninefold Fix
+- **[OCT-5033]** - Prevent rake gems:install if manage_gems is false
+
 v2.1.6
 ------
 ### Local Ninefold Fix
