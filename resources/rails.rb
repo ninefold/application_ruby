@@ -24,6 +24,7 @@ attribute :database_master_role, :kind_of => [String, NilClass], :default => nil
 # Actually defaults to "database.yml.erb", but nil means it wasn't set by the user
 attribute :database_template, :kind_of => [String, NilClass], :default => nil
 attribute :manage_database, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :manage_gems, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :gems, :kind_of => [Array, Hash], :default => []
 attribute :bundler, :kind_of => [NilClass, TrueClass, FalseClass], :default => nil
 attribute :bundler_deployment, :kind_of => [NilClass, TrueClass, FalseClass], :default => nil
